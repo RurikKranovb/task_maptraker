@@ -1,12 +1,12 @@
 import {ADD_TASK, EDIT_TASK, REMOVE_TASK} from "../../constants/actionTypes";
-
+import { AnyAction } from "redux"
 const initialState = [
     { id: 1, title: 'Task # 1', completed: true },
     { id: 3, title: 'Task # 2', completed: false },
     { id: 2, title: 'Task # 3', completed: false },
 ];
 
-const taskReducer = (state = initialState, action) => {
+const taskReducer = (state = initialState, action: AnyAction) => {
 
     switch (action.type) {
 

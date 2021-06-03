@@ -1,15 +1,23 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {addTask} from "../../store/actions/TaskAction";
+import {ITaskModel} from "../../models/ITasks";
 
+interface TaskAddFormProps {
+    title?:string;
+    addTask: (task: Pick<ITaskModel, "title">) => void
+}
+interface TaskAddFormState {
+    title:string
+}
 
-class TaskAddForm extends Component {
+class TaskAddForm extends Component<TaskAddFormProps, TaskAddFormState> {
 
     state = {
         title: this.props.title || ''
     };
 
-    handleAddTask = (ev) => {
+    handleAddTask = (ev: React.MouseEvent) => {
         // console.log(this)
         this.props.addTask({
             title: this.state.title
@@ -17,15 +25,12 @@ class TaskAddForm extends Component {
         this.setState({title: ""});
     };
 
-    updateInput = ev => {
+    updateInput = (ev : React.ChangeEvent<HTMLInputElement>) => {
         // console.log(this, ev);
-        this.setState({title: ev.target.value});
+        this.setState({title: (ev.target as HTMLInputElement).value});
     };
 
     render() {
-       const body = this.props.mySuperPuperState
-
-        console.log(body)
         return (
             <div>
                 <div>
@@ -34,7 +39,6 @@ class TaskAddForm extends Component {
                         value={this.state.title}
                     />
                     <button
-                        type="primary"
                         className="add-todo"
                         onClick={this.handleAddTask}>
                         Add Task
@@ -46,10 +50,8 @@ class TaskAddForm extends Component {
     };
 };
 
-const mapStateToProps = (state) => {
-    console.log(state);
+const mapStateToProps = () => {
     return {
-        mySuperPuperState: state
     }
 };
 const mapDispatchToProps = {
