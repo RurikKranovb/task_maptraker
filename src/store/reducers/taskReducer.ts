@@ -11,7 +11,7 @@ const taskReducer = (state = initialState, action: AnyAction) => {
     switch (action.type) {
 
         case ADD_TASK:
-            // console.log(action)
+            console.log(action, state)
             return [
                 ...state,
                 {

@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {addTask} from "../../store/actions/TaskAction";
 import {ITaskModel} from "../../models/ITasks";
+import {log} from "util";
 
 interface TaskAddFormProps {
     title?:string;
-    addTask: (task: Pick<ITaskModel, "title">) => void
+    addTask: (task: Pick<ITaskModel, "title">) => void;
+    tasks: ITaskModel[]
 }
 interface TaskAddFormState {
     title:string
@@ -31,6 +33,10 @@ class TaskAddForm extends Component<TaskAddFormProps, TaskAddFormState> {
     };
 
     render() {
+        console.log(this.props.tasks)
+
+        // const {title} = ;
+
         return (
             <div>
                 <div>
@@ -45,13 +51,18 @@ class TaskAddForm extends Component<TaskAddFormProps, TaskAddFormState> {
                     </button>
                 </div>
 
+                {this.props.tasks.map(value => value.title)}
+
             </div>
         );
     };
 };
 
-const mapStateToProps = () => {
+
+const mapStateToProps = (AppDispatch: { tasks: []; }) => {
+
     return {
+        tasks: AppDispatch.tasks
     }
 };
 const mapDispatchToProps = {
@@ -59,5 +70,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskAddForm);
-
-//export default TaskAddForm;

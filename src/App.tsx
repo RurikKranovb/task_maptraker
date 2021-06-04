@@ -1,18 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.scss';
-import TaskAdd from "./components/taskForm/TaskAddForm";
+import TaskAddForm from "./components/taskForm/TaskAddForm";
 
-function App() {
-  return (
-    <div className="App">
-      <div>
-        <h1>Header</h1>
+interface IApp {
 
-        <TaskAdd></TaskAdd>
-      </div>
-    </div>
-  );
+}
+
+class App extends Component<IApp> {
+
+    render() {
+
+        return (
+            <div className="App">
+                <div>
+                    <h1>Header</h1>
+                    <TaskAddForm/>
+                </div>
+            </div>
+        );
+    };
 }
 
 export default App;
