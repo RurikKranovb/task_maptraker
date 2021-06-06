@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {addTask} from "../../store/actions/TaskAction";
 import {ITaskModel} from "../../models/ITasks";
-import {log} from "util";
+
 
 interface TaskAddFormProps {
     title?:string;
@@ -13,7 +13,7 @@ interface TaskAddFormState {
     title:string
 }
 
-class TaskAddForm extends Component<TaskAddFormProps, TaskAddFormState> {
+class TaskForm extends Component<TaskAddFormProps, TaskAddFormState> {
 
     state = {
         title: this.props.title || ''
@@ -34,8 +34,6 @@ class TaskAddForm extends Component<TaskAddFormProps, TaskAddFormState> {
 
     render() {
         console.log(this.props.tasks)
-
-        // const {title} = ;
 
         return (
             <div>
@@ -59,14 +57,6 @@ class TaskAddForm extends Component<TaskAddFormProps, TaskAddFormState> {
 };
 
 
-const mapStateToProps = (AppDispatch: { tasks: []; }) => {
 
-    return {
-        tasks: AppDispatch.tasks
-    }
-};
-const mapDispatchToProps = {
-    addTask
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskAddForm);
+export default TaskForm;

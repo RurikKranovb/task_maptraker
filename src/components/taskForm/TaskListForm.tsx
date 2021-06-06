@@ -7,7 +7,7 @@ class TaskListForm extends Component {
                     {/*{this.state.taskReducer.map(item => <li>item</li>)}*/}
             </div>
         );
-    }
-}
+    };
+};
 
 export default TaskListForm;

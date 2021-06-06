@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import './App.scss';
-import TaskAddForm from "./components/taskForm/TaskAddForm";
+import {connect} from "react-redux";
+import TaskFormContainer from "./components/taskForm/container/TaskContainer";
 
 interface IApp {
-
+    //tasks: ITaskModel[];
+    //addEvent: (task: ITaskModel) => void;
 }
+
 
 class App extends Component<IApp> {
 
@@ -14,11 +17,29 @@ class App extends Component<IApp> {
             <div className="App">
                 <div>
                     <h1>Header</h1>
-                    <TaskAddForm/>
+                    <TaskFormContainer/>
                 </div>
             </div>
         );
     };
 }
 
-export default App;
+const mapStateToProps = (state : any) => {
+    return {
+        // tasks: state.tasks
+    };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        // addEvent: (task: ITaskModel) => dispatch(addTask(task)),
+    };
+};
+
+const ConnectedApp = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);
+
+
+export default ConnectedApp;
