@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.scss';
 import {connect} from "react-redux";
-import TaskFormContainer from "./components/taskForm/container/TaskContainer";
+import TaskFormContainer from "./components/taskForm/container/TaskFormContainer";
 
 interface IApp {
     //tasks: ITaskModel[];

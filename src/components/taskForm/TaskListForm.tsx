@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import {ITaskModel} from "../../models/ITasks";
-import TaskItemForm from "./TaskItemForm";
+import TaskItemContainer from "./container/TaskItemContainer";
+
 
 
 interface ITaskListFormProps {
     tasks: ITaskModel[]
-}
+};
 
 class TaskListForm extends Component<ITaskListFormProps> {
     render() {
         return (
             <div>
-                    {this.props.tasks.map(value => <li> <TaskItemForm title={value.title}/></li>)}
+                    {this.props.tasks.map(value => <li key={value.id}> <TaskItemContainer task={value}/> </li>)}
             </div>
         );
     };

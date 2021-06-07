@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {connect, useSelector} from "react-redux";
-import {addTask} from "../../store/actions/TaskAction";
 import {ITaskModel} from "../../models/ITasks";
 import TaskListForm from "./TaskListForm";
 

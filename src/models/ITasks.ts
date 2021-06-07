@@ -1,6 +1,6 @@
 
 export interface ITaskModel {
     title: string;
-    id: number;
+    id: string;
     complete: boolean;
 }

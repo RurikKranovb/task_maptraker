@@ -22,9 +22,9 @@ const taskReducer = (state = initialState, action: AnyAction) => {
                 }
             ];
 
-        // case REMOVE_TASK:
-        //     return state.filter((task) => task.id !== action.payload);
-        //
+        case REMOVE_TASK:
+            return state.filter((task) => task.id !== action.payload);
+
         // case EDIT_TASK:
         //     return state.map(task =>
         //         task.id === action.id
