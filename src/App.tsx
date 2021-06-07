@@ -16,7 +16,7 @@ class App extends Component<IApp> {
         return (
             <div className="App">
                 <div>
-                    <h1>Header</h1>
+                    <h1>Список задач</h1>
                     <TaskFormContainer/>
                 </div>
             </div>

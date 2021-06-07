@@ -2,16 +2,18 @@ import React, {Component} from 'react';
 import {connect, useSelector} from "react-redux";
 import {addTask} from "../../store/actions/TaskAction";
 import {ITaskModel} from "../../models/ITasks";
+import TaskListForm from "./TaskListForm";
 
 
 interface TaskAddFormProps {
     title?:string;
     addTask: (task: Pick<ITaskModel, "title">) => void;
     tasks: ITaskModel[]
-}
+};
+
 interface TaskAddFormState {
     title:string
-}
+};
 
 class TaskForm extends Component<TaskAddFormProps, TaskAddFormState> {
 
@@ -49,7 +51,7 @@ class TaskForm extends Component<TaskAddFormProps, TaskAddFormState> {
                     </button>
                 </div>
 
-                {this.props.tasks.map(value => value.title)}
+                <TaskListForm tasks={this.props.tasks}/>
 
             </div>
         );

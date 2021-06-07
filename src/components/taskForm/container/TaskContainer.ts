@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import TaskForm from "../TaskForm";
 
 
-export const mapStateToProps = (AppDispatch: { tasks: []; }) => {
+export const mapStateToProps = (AppDispatch: any) => {
     return {
         tasks: AppDispatch.tasks
     };

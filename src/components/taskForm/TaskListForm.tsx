@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
+import {ITaskModel} from "../../models/ITasks";
+import TaskItemForm from "./TaskItemForm";
 
-class TaskListForm extends Component {
+
+interface ITaskListFormProps {
+    tasks: ITaskModel[]
+}
+
+class TaskListForm extends Component<ITaskListFormProps> {
     render() {
         return (
             <div>
-                    {/*{this.state.taskReducer.map(item => <li>item</li>)}*/}
+                    {this.props.tasks.map(value => <li> <TaskItemForm title={value.title}/></li>)}
             </div>
         );
     };
