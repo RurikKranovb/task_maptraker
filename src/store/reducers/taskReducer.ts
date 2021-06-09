@@ -1,12 +1,13 @@
 import {ADD_TASK, EDIT_TASK, REMOVE_TASK} from "../../constants/actionTypes";
 import { AnyAction } from "redux"
+import {ITaskModel} from "../../models/ITasks";
 const initialState = [
     { id: 1, title: 'Task # 1', completed: true },
     { id: 3, title: 'Task # 2', completed: false },
     { id: 2, title: 'Task # 3', completed: false },
 ];
 
-const taskReducer = (state = initialState, action: AnyAction) => {
+const taskReducer = (state = initialState, action: AnyAction) /*: ITaskModel*/ => {
 
     switch (action.type) {
 
@@ -25,14 +26,12 @@ const taskReducer = (state = initialState, action: AnyAction) => {
         case REMOVE_TASK:
             return state.filter((task) => task.id !== action.payload);
 
-        // case EDIT_TASK:
-        //     return state.map(task =>
-        //         task.id === action.id
-        //             ? { ...task, text: action.text }
-        //             : task
-        //     );
-
-
+        case EDIT_TASK:
+            return state.map(task =>
+                task.id === action.id
+                    ? { ...task, text: action.text }
+                    : task
+            );
 
         default:
             return state;

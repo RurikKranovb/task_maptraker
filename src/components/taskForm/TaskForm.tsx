@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {ITaskModel} from "../../models/ITasks";
 import TaskListForm from "./TaskListForm";
+import './style/index.scss'
 
 
 interface TaskAddFormProps {
@@ -40,8 +41,7 @@ class TaskForm extends Component<TaskAddFormProps, TaskAddFormState> {
                 <div>
                     <input
                         onChange={this.updateInput}
-                        value={this.state.title}
-                    />
+                        value={this.state.title}/>
                     <button
                         className="add-todo"
                         onClick={this.handleAddTask}>
