@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ITaskModel} from "../../models/ITasks";
 import TaskItemContainer from "./container/TaskItemContainer";
-
+import './style/index.scss'
 
 
 interface ITaskListFormProps {
@@ -11,8 +11,11 @@ interface ITaskListFormProps {
 class TaskListForm extends Component<ITaskListFormProps> {
     render() {
         return (
-            <div>
-                    {this.props.tasks.map(value => <li key={value.id}> <TaskItemContainer task={value}/> </li>)}
+            <div className='taskListForm__taskItems'>
+                    {this.props.tasks.map(value =>
+                        <li className='taskListForm__taskItem' key={value.id}>
+                            <TaskItemContainer task={value}/>
+                        </li>)}
             </div>
         );
     };

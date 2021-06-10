@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
 import {ITaskModel} from "../../models/ITasks";
+import {editTask} from "../../store/actions/TaskAction";
 
 interface ITaskItemFormProps {
     task: ITaskModel
 }
 interface ITaskItemFormActions {
     deleteTask: (id: string) => void;
+    editTask: (id: string, task: Partial<ITaskModel>) => void;
 }
 
 interface ITaskItemFormState {
-    isEditing: boolean
+    isEditing: boolean;
+    titleValue: string;
 }
 
 type TaskItemFormPropsAll = ITaskItemFormProps & ITaskItemFormActions
@@ -19,54 +22,82 @@ class TaskItemForm extends Component<TaskItemFormPropsAll, ITaskItemFormState> {
         super(props);
 
         this.remove = this.remove.bind(this)
-        this.startEditing = this.startEditing.bind(this)
-        // this.edit = this.edit.bind(this)
+        this.toggleEditing = this.toggleEditing.bind(this)
+        this.edit = this.edit.bind(this)
 
         this.state = {
-            isEditing: false
-        }
+            isEditing: false,
+            titleValue: this.props.task.title
+        };
+
+        this.onWindowClick = this.onWindowClick.bind(this);
+    };
+
+    private onWindowClick(e: any){
+        if(this.state.isEditing && e.target.className.indexOf("edit-title__input") === -1) {
+            this.toggleEditing(new Event("close"));
+        };
+    };
+
+    componentDidMount() {
+        window.addEventListener("click", this.onWindowClick);
+    };
+    componentWillUnmount() {
+        window.removeEventListener("click", this.onWindowClick);
     };
 
     render() {
-        console.log(this.props);
-        const isTrue = true;
-
-
         return (
             <div>
-                { isTrue  && (<div>test</div>)}
-
-                <div onClick={this.startEditing}>
-                    {this.conditionRender(this.state.isEditing)}
-
-                </div>
-
+                {this.conditionEditingRender(this.state.isEditing)}
                 <button className='removeButton' onClick={this.remove}>Remove</button>
             </div>
         );
     };
 
-    private conditionRender(val:boolean) {
+    private conditionEditingRender(val:boolean) {
+        const id = this.props.task.id;
 
-        if(val) {
-            return  <div> <input title={this.props.task.title}/> </div>;
-        }
-        return <div> {this.props.task.title} </div>;
-    }
-    private startEditing() {
+        if (val) {
+            return (
+                <div>
+                    <input className="edit-title__input"
+                           title={this.props.task.title}
+                           value={this.state.titleValue}
+                           onChange={this.edit(id)}/>
+                </div>
+            );
+        };
+        return (
+            <div onClick={this.toggleEditing}>
+                {this.props.task.title}
+            </div>
+        );
+    };
 
+    private toggleEditing(e: any) {
+        e.stopPropagation();
         this.setState({
-            isEditing: true
-        })
-    }
+            isEditing: !this.state.isEditing
+        });
+        return false;
+    };
 
 
-    // private edit() {
-    //
-    // }
+    private edit(id : string) {
+        return (e: any) => {
+
+            this.setState({
+                titleValue: e.target.value
+            });
+
+            const task = this.props.task;
+            task.title = e.target.value;
+            this.props.editTask(id, task);
+        };
+    };
 
     private remove() {
-
         this.props.deleteTask(
             this.props.task.id
         );
