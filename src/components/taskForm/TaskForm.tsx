@@ -28,7 +28,7 @@ class TaskForm extends Component<TaskAddFormProps, TaskAddFormState> {
         this.setState({title: ""});
     };
 
-    updateInput = (ev : React.ChangeEvent<HTMLInputElement>) => {
+    updateInput = (ev: React.ChangeEvent<HTMLInputElement>) => {
         // console.log(this, ev);
         this.setState({title: (ev.target as HTMLInputElement).value});
     };
@@ -37,6 +37,7 @@ class TaskForm extends Component<TaskAddFormProps, TaskAddFormState> {
         console.log(this.props.tasks)
 
         return (
+
             <div>
                 <div>
                     <input
@@ -55,8 +56,5 @@ class TaskForm extends Component<TaskAddFormProps, TaskAddFormState> {
         );
     };
 };
-
-
-
 
 export default TaskForm;
