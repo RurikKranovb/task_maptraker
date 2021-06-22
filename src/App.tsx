@@ -3,22 +3,44 @@ import './App.scss';
 import {connect} from "react-redux";
 import TaskFormContainer from "./components/taskForm/container/TaskFormContainer";
 import * as L from 'leaflet';
-// import google from 'google';
 import './map/googleProvider.js';
 import {Coords, LeafletEvent, popup} from "leaflet";
 import {geoJson} from "./map/geoJson";
+
+import 'antd/dist/antd.css';
+import { Layout, Menu } from 'antd';
+import {
+    MenuUnfoldOutlined,
+    MenuFoldOutlined,
+    UserOutlined,
+    VideoCameraOutlined,
+    UploadOutlined,
+} from '@ant-design/icons';
+
+
+const { Header, Sider, Content } = Layout;
+
+
 
 interface IApp {
     //tasks: ITaskModel[];
     //addEvent: (task: ITaskModel) => void;
 }
 
-class App extends Component<IApp> {
+interface IAppState {
+    collapsed: boolean
+}
+
+class App extends Component<IApp, IAppState> {
 
     private readonly mapRef: React.RefObject<HTMLDivElement>;
 
     constructor(props: IApp) {
         super(props);
+
+        this.state = {
+            collapsed: false,
+        };
 
         // @ts-ignore
         //console.log(L.GridLayer["GoogleMutant"](), "123")
@@ -33,6 +55,12 @@ class App extends Component<IApp> {
         //     });
         // }
     }
+
+    toggle = () => {
+        this.setState({
+            collapsed: !this.state.collapsed,
+        });
+    };
 
 
     componentDidMount() {
@@ -125,17 +153,54 @@ class App extends Component<IApp> {
     render() {
 
         return (
-            <div>
+            <Layout>
+                <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+                    <div className="logo" />
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                        <Menu.ItemGroup></Menu.ItemGroup>
+                        <Menu.Item key="1" icon={<UserOutlined />}>
+                            nav 1
+                        </Menu.Item>
+                        <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+                            nav 2
+                        </Menu.Item>
+                        <Menu.Item key="3" icon={<UploadOutlined />}>
+                            nav 3
+                        </Menu.Item>
+                    </Menu>
+                </Sider>
+                <Layout className="site-layout">
+                    <Header className="site-layout-background" style={{ padding: 0 }}>
+                        {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                            className: 'trigger',
+                            onClick: this.toggle,
+                        })}
+                    </Header>
+                    <Content
+                        className="site-layout-background"
+                        style={{
+                            margin: '24px 16px',
+                            padding: 24,
+                            minHeight: 280,
+                        }}
+                    >
+                        <div>
 
-                <div className="App">
-                    <div>
-                        <h1>Список задач</h1>
-                        <div><TaskFormContainer/></div>
-                        <div id='map' ref={this.mapRef}  style={{overflow: "hidden", "background" : "red"}}/>
-                    </div>
-                </div>
+                            <div className="App">
+                                <div>
+                                    <h1>Список задач</h1>
+                                    <div><TaskFormContainer/></div>
+                                    <div id='map' ref={this.mapRef}
+                                         style={{overflow: "hidden", "background" : "red"}}/>
+                                </div>
+                            </div>
 
-            </div>
+                        </div>
+
+                    </Content>
+                </Layout>
+            </Layout>
+
         );
     };
 };
