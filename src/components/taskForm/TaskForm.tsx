@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ITaskModel} from "../../models/ITasks";
 import TaskListForm from "./TaskListForm";
-import './style/index.scss'
+import './style/index.scss';
 
 
 interface TaskAddFormProps {

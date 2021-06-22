@@ -43,6 +43,12 @@
 }
 
 #map {
-  height: 180px;
-  width: 180px;
+ margin: 32px;
+ width: auto;
+ position: absolute;
+
+  height: 315px;
+  left: 15em;
+  right: 0;
+  height: 100vh;
 }

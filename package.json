@@ -7,14 +7,16 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@types/jest": "^26.0.23",
+    "@types/leaflet": "^1.7.1",
     "@types/node": "^12.20.14",
     "@types/react": "^17.0.9",
     "@types/react-dom": "^17.0.6",
     "@types/react-redux": "^7.1.16",
     "@types/redux": "^3.6.0",
     "@types/redux-thunk": "^2.1.0",
-    "@types/leaflet": "^1.7.1",
+    "antd": "^4.16.3",
     "leaflet": "^1.7.1",
+    "leaflet-providers": "^1.12.0",
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -27,7 +29,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start:WDS": "webpack-dev-server",
+    "build": "webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -48,5 +51,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/google.maps": "^3.45.3",
+    "@types/jquery": "^3.5.5",
+    "jquery": "^3.6.0",
+    "react-app-rewired": "^2.1.8"
   }
 }

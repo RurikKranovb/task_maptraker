@@ -1,6 +1,8 @@
 import {ADD_TASK, EDIT_TASK, REMOVE_TASK} from "../../constants/actionTypes";
 import { AnyAction } from "redux"
-import {ITaskModel} from "../../models/ITasks";
+
+
+
 const initialState = [
     { id: 1, title: 'Task # 1', completed: true },
     { id: 3, title: 'Task # 2', completed: false },
