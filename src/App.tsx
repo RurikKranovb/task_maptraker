@@ -154,28 +154,11 @@ class App extends Component<IApp, IAppState> {
 
         return (
             <Layout>
-                <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+                <Sider title='Список задач' trigger={null} collapsible collapsed={this.state.collapsed}>
                     <div className="logo" />
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                        <Menu.ItemGroup></Menu.ItemGroup>
-                        <Menu.Item key="1" icon={<UserOutlined />}>
-                            nav 1
-                        </Menu.Item>
-                        <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                            nav 2
-                        </Menu.Item>
-                        <Menu.Item key="3" icon={<UploadOutlined />}>
-                            nav 3
-                        </Menu.Item>
-                    </Menu>
+                    <TaskFormContainer/>
                 </Sider>
                 <Layout className="site-layout">
-                    <Header className="site-layout-background" style={{ padding: 0 }}>
-                        {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                            className: 'trigger',
-                            onClick: this.toggle,
-                        })}
-                    </Header>
                     <Content
                         className="site-layout-background"
                         style={{
@@ -188,8 +171,6 @@ class App extends Component<IApp, IAppState> {
 
                             <div className="App">
                                 <div>
-                                    <h1>Список задач</h1>
-                                    <div><TaskFormContainer/></div>
                                     <div id='map' ref={this.mapRef}
                                          style={{overflow: "hidden", "background" : "red"}}/>
                                 </div>
